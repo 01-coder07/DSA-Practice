@@ -1,1 +1,57 @@
+// The brute appraoch is to ---find all subarray and return max length.
+// Using Hashmap is OPTIMAL for array having both positive and negative , but if array has only positive then it is better solu.
+//OPTIMAL solution for array having both positive and negative-i.e Using HashMap.
+class Solution {
+    public int longestSubarray(int[] arr, int k) {
+        // code here
+        //using hashmap
+        HashMap<Long,Integer> map = new HashMap<>();
+        long preSum =0;
+        int maxLen=0;                                                   T.C = O(nlogn)
+        for(int i=0;i<arr.length;i++){                                  S.C = 0(n)
+            preSum = preSum + arr[i];
+            if(preSum == k){
+                maxLen = i+1;
+            }
+            long rem = preSum - k;
+            if(map.containsKey(rem)){
+                int len = i - map.get(rem);
+                maxLen = Math.max(maxLen,len);
+            }
+            if(!map.containsKey(preSum)){
+            map.put(preSum,i);
+        }
+        }
+        return maxLen;
+    }
+}
+// OPTIMAL soln for array only positives.- It uses two pointer apporach.
+public class Solution {
+    public static int longestSubarrayWithSumK(int []a, long k) {
+        // Write your code here
+        int n = a.length;
+        long preSum =0;                                                 T.C = O(2*N)
+        int maxLen =0;                                                  S.C =O(1)
+        int left =0;
+        int right =0;
+        while (right < n){
+          preSum  +=a[right];
+
+            while(left<=right && preSum>k){
+              preSum = preSum - a[left];
+              left++;
+            }
+            if(preSum == k){
+              maxLen = Math.max(maxLen,right - left +1);
+            }
+            right++;
+    }
+    return maxLen;
+}
+}
+
+
+
+
+
 
