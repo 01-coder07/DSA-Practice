@@ -1,0 +1,26 @@
+// we can use two for loops for finding the indexes of two pair whose sum is equal to k .  O(n2)
+//This is the brute approach , 
+//  hashing will give us the optimal solution, reducing the time complexity i.e O(n2) to O(n).
+//hashing
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<nums.length;i++){
+            //check if (target - nums[i]) is in map or not 
+            //if not in map then just put in the map and iterate next.
+            int a = nums[i];
+            int myTarget= target - a;                                             T.C = O(n)
+            if(!map.containsKey(myTarget)){                                       S.C = O(n)
+              map.put(a,i);
+            }
+            else{
+                int b = map.get(myTarget);
+                return new int[]{b,i};
+            }
+        }
+           return new int[]{-1,-1};
+    }
+}
+// there is one more way by using two pointer.
+//basicaly for that we first sort the array using Collections.Sort(). and after use two pointer to find the number . 
+// not the optimal as we first sort then traverse. but yeah it is one more way to do so.
