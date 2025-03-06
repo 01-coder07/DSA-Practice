@@ -1,0 +1,49 @@
+//The majority element is the element that appears more than ⌊n / 2⌋ times.
+//You may assume that the majority element always exists in the array
+
+//brute approach- Use two loops , outer loop for iterating in array. and inner loop to count the occurence and also check if it is 
+greater than n/2 if yes,return it .  T.C = O(n2)   S.C = o(N)
+
+//better approach-Using hashmap
+take key as the element of array and value as its occurrence. 
+//Code:
+class Solution {
+    public int majorityElement(int[] nums) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int n=nums.length;                                            T.C = O(nlogn) + o(n)   , S.C = o(n)
+        for(int i=0;i<n;i++){
+               int value = map.getOrDefault(nums[i],0);
+               map.put(nums[i],value+1);
+        }
+        for(Map.Entry<Integer,Integer> it :map.entrySet()){
+            if(it.getValue()>(n/2)){
+                return it.getKey();
+            }
+        }
+         return -1;
+}
+}
+//Optimal solution- Use two pointer . one to store element and other to store count. This count will not exactly store count.
+class Solution {
+    public int majorityElement(int[] nums) {
+        int n= nums.length;
+        int el=0;
+        int count =0;
+        for(int i =0;i<n;i++){
+            if(count ==0){
+                count=1;
+                el = nums[i];
+            }
+            else if(el == nums[i])
+            {
+                count++;
+            }
+            else{
+                count--;
+            }
+        }
+            return el;
+    }
+}
+As we can see it is only valid if the array must contain a majority only. other wise a for loop is also needed to check 
+el with the array element. 
