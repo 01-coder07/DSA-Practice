@@ -1,0 +1,49 @@
+we have to find  the  subarray with largest sum and return it.
+//brute approach would be - Using loops . FInd all the subarray return the largest sum. 
+it would take T.C -O(N3) and O(1) in space.
+
+int mylargest(int nums[], int n){
+int max=0;
+int sum=0;
+for(int i=0;i<n;i++){
+   for(int j=i;j<n;j++){
+    for(int k=i;k<j;k++){
+      sum +=nums[k];
+      max =Math.max(max,sum);
+      }
+   }
+}
+return max;
+//Here we are using one extra loop i.e k one. we simple need to add next element so we can do it without that loop as well which will 
+reduce time to  0(n2) .
+code:
+int mylargest(int nums[], int n){
+int max=0;
+for(int i=0;i<n;i++){
+   int sum=0;
+   for(int j=i;j<n;j++){
+      sum +=nums[j];
+      max =Math.max(max,sum);
+      }
+}
+return max;
+// Now time for best /optimal (Using kadanes algo)
+code:
+class Solution {
+    public int maxSubArray(int[] nums){
+        int n = nums.length;
+        int sum =0;
+        int max = Integer.MIN_VALUE;                             T.C=0(n)                                                                 S.C =0(n)
+        for(int i=0;i<n;i++){                                   s.c = 0(1)
+            sum+=nums[i];
+            max = Math.max(sum,max);
+            if(sum<0){
+                sum=0;
+            }
+        }
+        return max;
+    }
+}
+
+
+
