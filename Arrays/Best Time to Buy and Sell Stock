@@ -1,0 +1,15 @@
+// well it is easy problem . so brute aproach is simply using two for loops and calculating the differcne by each iterations and 
+// return the hightest profit. O(n2) s.c -0(1)
+ // optimal approach is by using only one loop ,storing the leastprice as we go and also calculating the profit we get from the price
+..code
+class Solution {
+    public int maxProfit(int[] prices) {
+        int profit = 0;
+        int lowestBuy = Integer.MAX_VALUE;
+        for(int i=0;i<prices.length;i++){                                     T.C =o(n)  S.c -O(1).
+            lowestBuy = Math.min(lowestBuy,prices[i]);
+            profit = Math.max(profit, prices[i] - lowestBuy);
+        }
+        return profit;
+    }
+}
