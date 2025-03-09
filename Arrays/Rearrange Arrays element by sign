@@ -1,0 +1,57 @@
+Pretty simple question, we just have to make some changes in our array. i.e we have to follow rule:
+a positive element followed by negative. (Both are equal).
+Input: nums = [3,1,-2,-5,2,-4]
+Output: [3,-2,1,-5,2,-4]
+//brute approach
+// use two loops -first we make two array pos and neg with size n/2 with posindex , negindex =0. 
+we just iterate in array and add positive in our pos array and negative in neg array.
+then after put all the elements as per the requirement.
+code:
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int n =nums.length;
+        int [] pos = new int[n/2];
+        int posindex = 0;
+        int [] neg = new int[n/2];
+        int negindex = 0;
+    // first loop to iterate in array and put pos and neg elements in
+    // their arrays
+       for(int i=0;i<n;i++){
+        if(nums[i]>0){
+            pos[posindex++] = nums[i];
+        }
+        else{
+            neg[negindex++] = nums[i];
+        }
+       }                                                          T.C = 0(n) + 0(n)    SC = o(n)
+   // now put back into the original array
+        for(int i=0;i<n/2;i++){
+        nums[2*i]=pos[i];
+        nums[2*i+1] =neg[i];
+      }
+      return nums;
+    }
+}
+// OPTIMAL APPROACH - use and extra array ,but with one less iteration . we just add elements in new array on basis of the 
+//sign of elements . Thats it:
+class Solution {
+    public int[] rearrangeArray(int[] nums) {
+        int result [] =  new int[nums.length];
+        int posIndex =0;
+        int negIndex =1;
+        for(int num:nums){
+            if(num>0){
+                result[posIndex]=num;
+                posIndex +=2;                                   T.c =0(n)      S.c =0(n)
+            }
+            else{
+                result[negIndex] =num;
+                negIndex +=2;
+            }
+        }
+      return result;
+    }
+}
+
+
+
