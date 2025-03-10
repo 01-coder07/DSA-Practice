@@ -43,8 +43,8 @@ class Solution {
             return;
         }
 //STEP 2: FIND THE NEXT GREATER ELEMENT TO SWAP WITH NUMS[IND];
-        for(int i=n-1;i>=ind;i--){
-           if(nums[i]>nums[ind]){
+        for(int i=n-1;i>=ind;i--){                                         T.C=0(3n)
+           if(nums[i]>nums[ind]){                                           S.c=0(1)
              int temp =nums[i];
              nums[i]=nums[ind];
              nums[ind]=temp;
