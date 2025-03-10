@@ -1,1 +1,60 @@
+You are given an array arr of positive integers. Your task is to find all the leaders in the array. An element is considered a leader if it is greater than or equal to all elements to its right. The rightmost element is always a leader.
+
+Examples:
+
+Input: arr = [16, 17, 4, 3, 5, 2]
+Output: [17, 5, 2]
+Explanation: Note that there is nothing greater on the right side of 17, 5 and, 2.
+Brute approach: using two loops
+class Solution {
+    static ArrayList<Integer> leaders(int arr[]) {
+        // code here
+        //can we use boolean datatype here.                                          T.C =0(n2)
+        // like we iterate through the array and if we val true add it               S.c=0(n) at worst case. 
+        int n = arr.length;                                                          we need to store in list thats why.
+        ArrayList<Integer> li = new ArrayList<>();
+        for(int i=0;i<n-1;i++){
+            boolean isResult= true;
+            for(int j =i+1;j<n;j++){
+                if(arr[j]>arr[i]){
+                    isResult = false;
+                    break;                                                  
+                }   
+            }
+            if(isResult){
+                li.add(arr[i]);
+            }
+        }
+        li.add(arr[n-1]);
+        return li;
+    }
+//optimal aprroach
+class Solution {
+    static ArrayList<Integer> leaders(int arr[]) {                       T.c =0(n)   S.C=0(1) 
+        // code here
+        ArrayList<Integer> myList = new ArrayList<>();
+        int max = Integer.MIN_VALUE;
+        int n =arr.length;
+        for(int i=n-1;i>=0;i--){
+            max =Math.max(max,arr[i]);//61
+            if(i==n-1){
+                myList.add(arr[i]);
+            }
+            else if(max ==arr[i]){
+                myList.add(arr[i]);
+            }
+        }
+        Collections.reverse(myList);
+        return myList;
+        
+    }
+}
+
+
+
+
+
+
+
+
 
