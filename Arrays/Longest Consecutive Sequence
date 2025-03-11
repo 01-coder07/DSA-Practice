@@ -1,0 +1,105 @@
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence.
+You must write an algorithm that runs in O(n) time.
+
+Example 1:
+Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+//Brute approach:
+Simply use one loop to take an element and another to check for the consecutive and return it .simple:
+code:
+class Solution {
+    public static boolean linearSearch(int nums[],int next){
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==next)
+                return true;
+        }
+        return false;
+    }
+    public int longestConsecutive(int[] nums) {
+        int longest =1;
+        int n=nums.length;
+        if(n==0) return 0;                                                T.C=0(n2)  s.c=0(1).
+        for(int i=0;i<n;i++){
+            int x = nums[i];
+            int cnt =1;
+            while(linearSearch(nums,x+1)==true){
+                cnt++;
+                x++;
+            }
+            longest =Math.max(longest,cnt);
+        }
+        return longest;
+    }
+}
+//better solution:
+very simple solution just look at the code.
+class Solution {
+    public int longestConsecutive(int[] nums) {                        nlogn for sorting. and n for loop so -
+        // just sort the array.                                        T.C=0(nlogn) +0(n)  S.C =0(1)
+        Arrays.sort(nums);
+        int cnt =0;
+        int longest=1;
+        int lastSmaller = Integer.MIN_VALUE;
+        if(nums.length == 0){
+            return 0;
+        }
+        for(int i=0;i<nums.length;i++){
+          if(nums[i]-1==lastSmaller){
+              cnt++;
+              lastSmaller=nums[i];
+          }
+          else if(nums[i] != lastSmaller){
+            cnt=1;
+            lastSmaller = nums[i];
+          }
+          longest =Math.max(longest,cnt);
+        }
+
+          return longest;
+    }
+}
+//optimal 
+class Solution {
+    public int longestConsecutive(int[] nums) {
+        int n = nums.length;
+        int cnt=0;
+        int longest =1;
+        HashSet<Integer> set = new HashSet<>();                         t.c=0(n) + 0(2*n) s.c=0(n).
+        if(n==0) return 0;
+        //add all the elements in set.
+        for(int i=0;i<n;i++){
+            set.add(nums[i]);
+        }                                                                           
+        // if we only check for consecutive if nums[i]-1 doesnt exist in set.
+        for(int it:set){
+            if(!set.contains(it-1)){
+             cnt=1;
+             int x = it;
+              while(set.contains(x+1)){
+                cnt++;
+                x =x+1;
+              }
+            }
+            longest = Math.max(longest,cnt);
+        }
+         return longest;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
