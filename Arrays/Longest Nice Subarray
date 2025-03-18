@@ -1,0 +1,32 @@
+You are given an array nums consisting of positive integers.
+
+We call a subarray of nums nice if the bitwise AND of every pair of elements that are in different positions in the subarray is equal to 0.
+
+Return the length of the longest nice subarray.
+
+A subarray is a contiguous part of an array.
+
+Note that subarrays of length 1 are always considered nice.
+
+ ans.
+class Solution {
+    public int longestNiceSubarray(int[] nums) {
+        int n = nums.length;
+        int mask =0;
+        int count =0;
+        int longest = 0;                             t.c=0(n) sc=0(1)
+        int left =0;
+        for(int i=0;i<n;i++)
+        {
+            if((mask & nums[i]) !=0){  //conflict
+              mask ^=nums[left];
+              left ++;
+              count--;
+            }
+            mask |=nums[i];
+            count++;
+            longest = Math.max(longest,count);
+        }
+        return longest;
+    }
+}
