@@ -1,0 +1,50 @@
+//Brute approach 
+// we can reverse a linkedlist using stack data structure . 
+//as stack follows lifo and we know that we have to reverse a linkedlist. so just putting elements in stack and store the popping  element would give the answer.
+
+ListNode reverseLL(ListNode head){
+Stack<ListNode> st = new Stack<>();
+// put all nodes in stack.
+  ListNode temp  = head;
+  while(temp!=null){
+    st.push(temp);
+    temp = temp.next;
+    }                                          T.C = O(n)
+  //now just pop from stack                    S.C = O(n)
+  head = st.pop();
+  ListNode current = head;
+  while(!st.isEmpty()){
+      current.next = st.pop();
+      current = current.next;
+    }
+  current.next = null;
+  return current;
+  }
+
+// Now more optimised solution would be , to not use the extra space for storing values in stack. we can do this in-place.
+// we can do this iteratively , where we just have to reverse the links and return the last element as head. THAT SHOULD DO IT.
+
+reverseList(ListNode head){
+  if(head==null || head.next == null) return head;
+  ListNode prev = null;
+  ListNode temp =head;
+  while(temp!=null){
+    ListNode nextNode = temp.next;                           T.C= O(n)    S.C= O(1).
+    temp.next = prev;
+    prev = temp;
+    temp = temp.next;
+    }
+  return prev;
+  }
+    
+
+
+
+
+
+
+
+
+
+
+  
